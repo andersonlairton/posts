@@ -27,7 +27,7 @@
                             <img class="card-img-top" src="{{$p->url_imagem}}" width="220" height="220" alt="Imagem de capa do card">
                             <p class="card-text">{{$p->descricao}}</p>
                             <a href="{{action('PostsController@editar',$p->id)}}" class="btn btn-secondary">Editar</a>
-                            <a href="#" class="btn btn-danger">Remover</a>
+                            <a href="#" class="btn btn-danger" onclick="js:btnExcluir('{{$p->id}}')">Remover</a>
                         </div>
                     </div>
                 </div>
@@ -36,5 +36,15 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function btnExcluir($id) {
+        let redirect = "{{ action('PostsController@deletar', ['id' => ':id']) }}";
+        redirect = redirect.replace(":id", $id);
+        $direciona = confirm('Deseja remover este post?');
+        if ($direciona == true) {
+            location.href = redirect;
+        }
+    }
+</script>
 @endif
 @stop

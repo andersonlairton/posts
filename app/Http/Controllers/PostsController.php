@@ -45,4 +45,12 @@ class PostsController extends Controller
         $post = Posts::find($id);
         return view('formulario')->withPost($post);
     }
+    public function deletar($id)
+    {
+        $post = Posts::find($id);
+        $post->delete($id);
+        return redirect()
+            ->action('PostsController@lista')
+            ->withSuccess('Post deletado com sucesso!');
+    }
 }

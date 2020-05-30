@@ -25,3 +25,4 @@ Route::get('/posts/novo','PostsController@novo')->name('posts.novo');
 Route::post('/posts/adiciona','PostsController@adiciona')->name('posts.adiciona');
 Route::post('/posts/update/{id}','PostsController@update')->name('posts.update');
 Route::get('/posts/editar/{id}','PostsController@editar');
+Route::get('/posts/deletar/{id}','PostsController@deletar');
