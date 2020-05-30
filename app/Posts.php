@@ -8,5 +8,5 @@ class Posts extends Model
 {
     protected $table = 'posts';
     public $timestamps=true;
-    protected $fillable = ['titulo','descricao','url_imagem','id_usuario'];
+    protected $fillable = ['titulo','descricao','url_imagem','user_id'];
 }
