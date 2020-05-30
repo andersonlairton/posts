@@ -7,6 +7,7 @@ use App\Http\Requests\PostsRequest;
 use App\Posts;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -33,5 +34,10 @@ class PostsController extends Controller
         $usuario = User::where('id', $id_user)->get()->first();
         $posts = $usuario->posts;
         return view('listagem')->withPosts($posts);
+    }
+    public function editar($id)
+    {
+        $post = Posts::find($id);
+        return view('formulario')->withPost($post);
     }
 }
