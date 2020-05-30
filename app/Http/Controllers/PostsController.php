@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\PostsRequest;
+use App\Notifications\PostNovo;
 use App\Posts;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,9 +19,13 @@ class PostsController extends Controller
     public function adiciona(PostsRequest $p)
     {
         $p['user_id'] = auth()->user()->id;
+        $usuario = User::where('id', $p['user_id'])->get()->first();
         Posts::create($p->all());
-
-        return redirect()->action('PostsController@lista');
+        $info = "novo post cadastrado no sistema";
+        $usuario->notify(new PostNovo($info));
+        return redirect()
+            ->action('PostsController@lista')
+            ->withSuccess('Post inserido com sucesso!');
     }
     public function update(PostsRequest $id)
     {

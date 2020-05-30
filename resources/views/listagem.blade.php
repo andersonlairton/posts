@@ -1,14 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-
-@if(empty($posts))
-<div class="alert alert-danger">
-    Você ainda nao tem posts cadastrados
-</div>
-@else
 <div class="container">
     <div class="card">
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+        @endif
+        @if(empty($posts))
+        <div class="alert alert-danger">
+            Você ainda nao tem posts cadastrados
+        </div>
+        @else
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand">Meus Posts</a>
             <a href="{{route('posts.novo')}}" class="btn btn-info my-2 my-sm-0">Novo Post</a>
