@@ -21,8 +21,9 @@ class PostsController extends Controller
         $p['user_id'] = auth()->user()->id;
         $usuario = User::where('id', $p['user_id'])->get()->first();
         Posts::create($p->all());
-        $info = "novo post cadastrado no sistema";
-        $usuario->notify(new PostNovo($info));
+        $info = "novo post cadastrado no sistema || ".$p['titulo'];
+        $conteudo = $p['titulo'];
+        $usuario->notify(new PostNovo($info,$conteudo));
         return redirect()
             ->action('PostsController@lista')
             ->withSuccess('Post inserido com sucesso!');

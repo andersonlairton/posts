@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->string('descricao');
-            $table->string('url_imagem');
+            $table->string('url_imagem',1000);
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')

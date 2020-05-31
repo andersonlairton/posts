@@ -26,11 +26,14 @@ class PostsRequest extends FormRequest
         return [
             'titulo'=>'required|max:50',
             'descricao'=>'required|max:255',
-            'url_imagem'=>'required|max:255'
+            'url_imagem'=>'required|url|max:1000'
         ];
     }
     public function messages()
     {
-        return ['required'=>':attribute não pode ser vazio.',];
+        return [
+            'required'=>':attribute não pode ser vazio.',
+            'url_imagem.url'=>'Url invalida',
+        ];
     }
 }
